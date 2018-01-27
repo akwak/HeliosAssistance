@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+        android:text="Choose role for this device:"
+        android:textSize="40dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Voter Assistant"
+        android:id="@+id/voterAssistantButton"
+        android:onClick="assistantClick"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Voter Observer"
+        android:id="@+id/voterObserverButton"
+        android:onClick="observerClick"/>
+
+</LinearLayout>

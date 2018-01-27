@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">HeliosAssistanceDemo</string>
+    <string name="scan_barcode">scan qr</string>
+    <string name="fetch_session_id">Fetch session id</string>
+    <string name="proceed">proceed to voting</string>
+</resources>
