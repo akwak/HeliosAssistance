@@ -60,6 +60,7 @@ public class VoteActivity  extends AppCompatActivity {
     private int topMargin;
     private int bottomMargin;
     private boolean assistant;
+    private Button encryptButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,10 +80,12 @@ public class VoteActivity  extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
         setContentView(R.layout.vote_activity);
 
 
         inviButton =(Button) findViewById(R.id.send_button);
+        encryptButton = (Button) findViewById(R.id.encrypt_button);
 
 
         question = (TextView) findViewById(R.id.question);
@@ -186,6 +189,11 @@ public class VoteActivity  extends AppCompatActivity {
 
 
     public void encryptVoteCodes(final View view) {
+        encryptVoteCodesAndShowBtn(view, true);
+
+    }
+
+    private void encryptVoteCodesAndShowBtn(final View view, final boolean show) {
         String url = Settings.HELIOS_URL + "assistance/" + "elections/" + electionId + "/post_vote_codes";
         StringRequest strRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
@@ -194,12 +202,11 @@ public class VoteActivity  extends AppCompatActivity {
                     public void onResponse(String response)
                     {
                         Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                        Button button = (Button) view.findViewById(R.id.encrypt_button);
-                        button.setEnabled(false);
-
-                        inviButton.setEnabled(true);
-                        inviButton.setVisibility(view.VISIBLE);
-                        inviButton.setEnabled(true);
+                    //    Button button = (Button) view.findViewById(R.id.encrypt_button);
+                        encryptButton.setEnabled(false);
+                        if(show) {
+                            showCheckButton(view);
+                        }
                     }
                 },
                 new Response.ErrorListener()
@@ -228,7 +235,12 @@ public class VoteActivity  extends AppCompatActivity {
 
         };
         MyRequestQueue.getInstance(this.getApplicationContext()).addToRequestQueue(strRequest);
+    }
 
+    private void showCheckButton(View view) {
+        inviButton.setEnabled(true);
+        inviButton.setVisibility(view.VISIBLE);
+        inviButton.setEnabled(true);
     }
 
     @NonNull
@@ -288,5 +300,9 @@ public class VoteActivity  extends AppCompatActivity {
 
     }
 
+    public void auditVoteCodes(View view) {
+        encryptVoteCodesAndShowBtn(view, false);
+
+    }
 }
 
